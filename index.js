@@ -1,7 +1,12 @@
-const container = document.getElementById('container')
+const $ = (el) => document.getElementById(el)
 
-const colorHex = '0047AB'
-const mode = 'complement'
+const container = $('container')
+const form = $('form')
+const modes = $('modes')
+const colorInput = $('color-input')
+
+let colorHex = 'F55A5A'
+let mode = 'monochrome'
 
 fetch(`https://www.thecolorapi.com/scheme?hex=${colorHex}&mode=${mode}`)
 	.then((res) => res.json())
@@ -15,3 +20,9 @@ fetch(`https://www.thecolorapi.com/scheme?hex=${colorHex}&mode=${mode}`)
       `
 		})
 	})
+
+form.addEventListener('submit', function (e) {
+	e.preventDefault()
+	console.log(modes.value)
+	console.log(colorInput.value)
+})
